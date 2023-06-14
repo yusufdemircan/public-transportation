@@ -7,10 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DriverDtoConverter {
 
-    private final VehicleDtoConverter vehicleDtoConverter;
 
-    public DriverDtoConverter(VehicleDtoConverter vehicleDtoConverter) {
-        this.vehicleDtoConverter = vehicleDtoConverter;
+
+    public DriverDtoConverter() {
     }
 
     public DriverDto convert(Driver from){
