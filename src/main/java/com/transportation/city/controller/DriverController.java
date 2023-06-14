@@ -7,6 +7,7 @@ import com.transportation.city.model.Vehicle;
 import com.transportation.city.service.DriverService;
 import com.transportation.city.service.VehicleService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,27 +28,24 @@ public class DriverController {
     }
 
     @PostMapping
-    public ResponseEntity<DriverDto> createDriver(@RequestBody DriverDto request){
+    public ResponseEntity<DriverDto> createDriver(@RequestBody DriverDto request) {
         return ResponseEntity.ok(driverService.createDriver(request));
     }
 
     @GetMapping
-    public ResponseEntity<List<DriverDto>> getDrivers(){
+    public ResponseEntity<List<DriverDto>> getDrivers() {
         return ResponseEntity.ok(driverService.getDrivers());
     }
 
     @DeleteMapping("/{id}")
-    public void deleteDriver(@PathVariable("id") String id){
-        Vehicle vehicle=vehicleService.findByDriverId(id);
-        if(vehicle!=null){
-            vehicle.setDriver(new Driver());
-            vehicleService.updateVehicle(vehicleDtoConverter.convert(vehicle));
-        }
+    public void deleteDriver(@PathVariable("id") String id) {
+        Vehicle vehicle = vehicleService.findByDriverId(id);
+        Assert.isNull(vehicle,"Şoför bir araca kayıtlı");
         driverService.deleteDriver(id);
     }
 
     @PutMapping
-    public ResponseEntity<DriverDto> updateDriver(@RequestBody DriverDto request){
+    public ResponseEntity<DriverDto> updateDriver(@RequestBody DriverDto request) {
         return ResponseEntity.ok(driverService.updateDriver(request));
     }
 }

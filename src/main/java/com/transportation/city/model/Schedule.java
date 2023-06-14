@@ -26,7 +26,7 @@ public class Schedule {
 
     LocalDateTime arrivalTime;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "vehicle_id",referencedColumnName = "id")
     private Vehicle vehicle;
 

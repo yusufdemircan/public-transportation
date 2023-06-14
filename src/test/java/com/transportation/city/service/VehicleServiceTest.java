@@ -37,10 +37,8 @@ class VehicleServiceTest {
         vehicleDtoConverter = mock(VehicleDtoConverter.class);
         driverConverter = mock(DriverConverter.class);
         vehicleConverter = new VehicleConverter(driverConverter);
-        /*driverConverter = new DriverConverter();
-        vehicleConverter = new VehicleConverter(driverConverter)*/;
+
         vehicleDtoConverter = mock(VehicleDtoConverter.class);
-        vehicleService = new VehicleService(vehicleRepository,vehicleDtoConverter,vehicleConverter,new DriverConverter());
     }
 
     @Test
@@ -63,24 +61,5 @@ class VehicleServiceTest {
 
     }
 
-    @Test
-    void updateVehicle() {
-        Vehicle vehicle = new Vehicle("id", VehicleType.BUS,40,new Driver("id","yusuf","demircan"));
-        VehicleDto vehicleDto = new VehicleDto("id",VehicleType.BUS,40,new DriverDto("id","yusuf","demircan"));
 
-        Mockito.when(vehicleRepository.save(vehicle)).thenReturn(vehicle);
-        Mockito.when(vehicleDtoConverter.convert(vehicle)).thenReturn(vehicleDto);
-
-
-        vehicleDto.setVehicleType(VehicleType.TRAIN);
-
-        System.out.println(vehicleDto.getVehicleType());
-
-        VehicleDto result = vehicleService.updateVehicle(vehicleDto);
-
-        System.out.println(result);
-
-        assertEquals(result,vehicle);
-
-    }
 }

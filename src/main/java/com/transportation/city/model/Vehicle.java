@@ -21,7 +21,7 @@ public class Vehicle {
 
     private Integer seats;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "driver_id",referencedColumnName = "id")
     private Driver driver;
 
