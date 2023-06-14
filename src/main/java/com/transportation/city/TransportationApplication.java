@@ -8,10 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 
 @SpringBootApplication
 public class TransportationApplication implements CommandLineRunner {
@@ -44,20 +40,6 @@ public class TransportationApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-	/*	Stop stop = new Stop("","OGM",new HashSet<>());
-		Stop stop2 = new Stop("","belediye",new HashSet<>());
-		Stop stop3 = new Stop("","yayla",new HashSet<>());
-		Stop stop4 = new Stop("","etlik",new HashSet<>());
-
-		Route route = new Route("","KECIOREN-BEŞTEPE",new HashSet<>());
-
-
-
-		RouteStop routeStop = new RouteStop("",route,stop);
-		RouteStop rs = routeStopRepository.save(routeStop);
-
-		routeStopRepository.save(new RouteStop("",rs.getRoute(),stop2));*/
 
 		Route route = new Route();
 		route.setName("KECIOREN-BESTEPE");
