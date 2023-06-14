@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -12,5 +13,5 @@ import java.util.Set;
 public class StopDto {
     private String id;
     private String name;
-    private Set<RouteDto> route;
+    private Set<RouteDto> route= new HashSet<>();
 }

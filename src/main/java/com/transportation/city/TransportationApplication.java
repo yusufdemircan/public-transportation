@@ -17,20 +17,17 @@ public class TransportationApplication implements CommandLineRunner {
 	private final ScheduleRepository scheduleRepository;
 	private final RouteRepository routeRepository;
 	private final StopRepository stopRepository;
-	private final  RouteStopRepository routeStopRepository;
 
 	public TransportationApplication(DriverRepository driverRepository,
 									 VehicleRepository vehicleRepository,
 									 ScheduleRepository scheduleRepository,
 									 RouteRepository routeRepository,
-									 StopRepository stopRepository,
-									 RouteStopRepository routeStopRepository) {
+									 StopRepository stopRepository) {
 		this.driverRepository = driverRepository;
 		this.vehicleRepository = vehicleRepository;
 		this.scheduleRepository = scheduleRepository;
 		this.routeRepository = routeRepository;
 		this.stopRepository = stopRepository;
-		this.routeStopRepository = routeStopRepository;
 	}
 
 
