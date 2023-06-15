@@ -11,7 +11,6 @@ import com.transportation.city.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ScheduleService {
@@ -67,5 +66,9 @@ public class ScheduleService {
 
     public Schedule findByRouteId(String id){
         return scheduleRepository.findByRouteId(id);
+    }
+
+    public Schedule findByScheduleId(String id) {
+        return scheduleRepository.findById(id).orElseThrow(()->new ScheduleNotFoundException("Schedule could not find id : "+id));
     }
 }

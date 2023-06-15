@@ -60,4 +60,7 @@ public class RouteService {
         return routeRepository.save(route);
     }
 
+    public Route findByRouteId(String id) {
+        return routeRepository.findById(id).orElseThrow(()->new RouteNotFoundException("Route could not find id : "+id));
+    }
 }

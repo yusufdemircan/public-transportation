@@ -47,4 +47,8 @@ public class StopService {
     public List<String> getRoutesByStopId(String stopId){
         return stopRepository.getRouteListByStop(stopId);
     }
+
+    public Stop findByStopId(String id){
+       return stopRepository.findById(id).orElseThrow(()->new StopNotFoundException("Stop could not find id : "+id));
+    }
 }
