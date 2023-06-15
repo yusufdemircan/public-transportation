@@ -8,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
-
 @SpringBootApplication
 public class TransportationApplication implements CommandLineRunner {
 
@@ -29,7 +28,6 @@ public class TransportationApplication implements CommandLineRunner {
 		this.routeRepository = routeRepository;
 		this.stopRepository = stopRepository;
 	}
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(TransportationApplication.class, args);

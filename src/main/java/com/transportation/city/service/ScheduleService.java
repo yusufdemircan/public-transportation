@@ -64,4 +64,8 @@ public class ScheduleService {
         schedule.setVehicle(update.getVehicle());
         return schedulerDtoConverter.convert(scheduleRepository.save(schedule));
     }
+
+    public Schedule findByRouteId(String id){
+        return scheduleRepository.findByRouteId(id);
+    }
 }

@@ -2,10 +2,10 @@ package com.transportation.city.controller;
 
 import com.transportation.city.converter.VehicleDtoConverter;
 import com.transportation.city.dto.DriverDto;
-import com.transportation.city.model.Driver;
 import com.transportation.city.model.Vehicle;
 import com.transportation.city.service.DriverService;
 import com.transportation.city.service.VehicleService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class DriverController {
     }
 
     @PostMapping
-    public ResponseEntity<DriverDto> createDriver(@RequestBody DriverDto request) {
+    public ResponseEntity<DriverDto> createDriver(@Valid @RequestBody DriverDto request) {
         return ResponseEntity.ok(driverService.createDriver(request));
     }
 
@@ -45,7 +45,7 @@ public class DriverController {
     }
 
     @PutMapping
-    public ResponseEntity<DriverDto> updateDriver(@RequestBody DriverDto request) {
+    public ResponseEntity<DriverDto> updateDriver(@Valid @RequestBody DriverDto request) {
         return ResponseEntity.ok(driverService.updateDriver(request));
     }
 }

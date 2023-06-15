@@ -2,16 +2,14 @@ package com.transportation.city.service;
 
 import com.transportation.city.converter.RouteConverter;
 import com.transportation.city.converter.RouteDtoConverter;
-import com.transportation.city.dto.RouteDto;
 import com.transportation.city.exception.MustBeRouteHaveStops;
 import com.transportation.city.exception.RouteNotFoundException;
 import com.transportation.city.model.Route;
-import com.transportation.city.model.Stop;
+import com.transportation.city.model.Schedule;
 import com.transportation.city.repository.RouteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RouteService {
@@ -24,11 +22,14 @@ public class RouteService {
 
     private final StopService stopService;
 
-    public RouteService(RouteRepository routeRepository, RouteDtoConverter routeDtoConverter, RouteConverter routeConverter, StopService stopService) {
+    private final ScheduleService scheduleService;
+
+    public RouteService(RouteRepository routeRepository, RouteDtoConverter routeDtoConverter, RouteConverter routeConverter, StopService stopService, ScheduleService scheduleService) {
         this.routeRepository = routeRepository;
         this.routeDtoConverter = routeDtoConverter;
         this.routeConverter = routeConverter;
         this.stopService = stopService;
+        this.scheduleService = scheduleService;
     }
 
 
@@ -36,8 +37,6 @@ public class RouteService {
         if(routeDto.getStops().size()<2)
             throw new MustBeRouteHaveStops("Rota oluşturulur iken en az 2 durak seçmelisiniz!");
         Route rtd =routeRepository.save(routeDto);
-        if (rtd.getStops().size()>0)
-            rtd.getStops().forEach(f->{f.getRoute().add(rtd);stopService.updateStop(f);});
         return rtd;
     }
 
@@ -45,7 +44,11 @@ public class RouteService {
         return routeRepository.findAll();
     }
 
-    public Boolean deleteRoute(String id){
+    public Boolean deleteRoute(String id) throws Exception {
+        Schedule schedule = scheduleService.findByRouteId(id);
+        if(schedule!=null){
+            throw new Exception("Rotayı kaldırmadan önce oluşturulan plandan rotayı değiştirin");
+        }
         routeRepository.deleteById(id);
         return true;
     }

@@ -33,7 +33,7 @@ public class RouteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteRoute(@PathVariable("id") String id){
+    public ResponseEntity<Boolean> deleteRoute(@PathVariable("id") String id) throws Exception {
         return ResponseEntity.ok(routeService.deleteRoute(id));
     }
 }
