@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  app:
+    image: 'public-transportation:latest'
+    build:
+      context: .
+    container_name: public-transportation
+    ports:
+      - 9090:8080
